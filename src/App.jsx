@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-    // Theme Toggle (persistent)
+    
     const [dark, setDark] = useState(() => {
         const saved = localStorage.getItem('theme')
         if (saved === 'dark') return true
         if (saved === 'light') return false
-        return false // Standard: light
+        return false
     })
 
         useEffect(() => {
@@ -64,12 +64,20 @@ function App() {
 
             <section id="about" className="container about">
                 <h2>Über mich</h2>
+                <br />
                 <p>
                     Ich entwickle seit einem Jahr Web‑ und Softwarelösungen — von Single Page Apps bis zu Backend‑Services. Ich arbeite bevorzugt mit React, Node.js, und modernen CI/CD‑Pipelines.
                 </p>
                 <p>
-                    Mein Fokus liegt auf: performanter Frontend‑Entwicklung, robusten APIs und guter Entwicklererfahrung (tests, linting, CI).
+                    Ich lerne stetig neue Technologien und bestrebe mich danach, qualitativ hochwertige Software zu liefern, die sowohl den Nutzer als auch den Entwickler im Blick hat. Zudem lege ich großen Wert auf sauberen, wartbaren Code und eine durchdachte Architektur. 
                 </p>
+                <p>
+                    Leider fehlen mir aktuell noch umfangreiche Berufserfahrungen, aber ich bin hochmotiviert, mein Wissen in realen Projekten anzuwenden und weiter auszubauen.    
+                </p>
+                <p>
+                    Neue Herausforderungen und spannende Projekte reizen mich besonders, da ich so mein Können unter Beweis stellen und weiterentwickeln kann.
+                </p>
+
             </section>
 
             <section id="projects" className="container projects">
