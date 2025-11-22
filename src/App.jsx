@@ -58,12 +58,12 @@ function App() {
             <section className="hero">
                 <div className="container hero-inner">
                     <h1>
-                        Ich baue digitale Produkte
+                        Digitale Produkte gestalten
                         <br />
                         <span className="accent">Web- & Softwarelösungen</span>
                     </h1>
                     <p className="lead">
-                        Ich bin Full‑Stack Entwickler mit Fokus auf moderne Webtechnologien, sauberes Design und skalierbare Architekturen.
+                        Als Full‑Stack‑Entwickler liegt mein Fokus auf modernen Webtechnologien, sauberem Design und skalierbaren Architekturen.
                     </p>
                     <p>
                         <a className="btn primary" href="#projects">Meine Projekte ansehen</a>
@@ -76,10 +76,10 @@ function App() {
                 <h2>Über mich</h2>
                 <br />
                 <p>
-                    Ich entwickle seit einem Jahr Web‑ und Softwarelösungen — von Single Page Apps bis zu Backend‑Services. Ich arbeite bevorzugt mit React, Node.js.
+                    Seit einem Jahr entwickle ich Web‑ und Softwarelösungen — von Single Page Apps bis zu Backend‑Services. Bevorzugt arbeite ich mit React und Node.js.
                 </p>
                 <p>
-                    Ich lerne stetig neue Technologien und bestrebe mich danach, qualitativ hochwertige Software zu liefern, die sowohl den Nutzer als auch den Entwickler im Blick hat. Zudem lege ich großen Wert auf sauberen, wartbaren Code und eine durchdachte Architektur. 
+                    Stetiges Lernen neuer Technologien gehört zu meinem Ansatz; mein Ziel ist es, qualitativ hochwertige Software zu liefern, die sowohl den Nutzer als auch den Entwickler im Blick hat. Zudem lege ich großen Wert auf sauberen, wartbaren Code und eine durchdachte Architektur. 
                 </p>
                 <p>
                     Leider fehlen mir aktuell noch umfangreiche Berufserfahrungen, aber ich bin hochmotiviert, mein Wissen in realen Projekten anzuwenden und weiter auszubauen.    
