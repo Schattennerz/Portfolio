@@ -21,6 +21,16 @@ function App() {
             }
         }, [dark])
 
+    useEffect(() => {
+        if ('scrollRestoration' in window.history) {
+            try {
+                window.history.scrollRestoration = 'manual'
+            } catch (e) {
+                
+            }
+        }
+        window.scrollTo(0, 0)
+    }, [])
   return (
         <>
             <div className="header">
@@ -66,7 +76,7 @@ function App() {
                 <h2>Über mich</h2>
                 <br />
                 <p>
-                    Ich entwickle seit einem Jahr Web‑ und Softwarelösungen — von Single Page Apps bis zu Backend‑Services. Ich arbeite bevorzugt mit React, Node.js, und modernen CI/CD‑Pipelines.
+                    Ich entwickle seit einem Jahr Web‑ und Softwarelösungen — von Single Page Apps bis zu Backend‑Services. Ich arbeite bevorzugt mit React, Node.js.
                 </p>
                 <p>
                     Ich lerne stetig neue Technologien und bestrebe mich danach, qualitativ hochwertige Software zu liefern, die sowohl den Nutzer als auch den Entwickler im Blick hat. Zudem lege ich großen Wert auf sauberen, wartbaren Code und eine durchdachte Architektur. 
@@ -86,18 +96,18 @@ function App() {
                     <article className="card">
                         <h3>Warehouse Manager</h3>
                         <p>Vollständiges Inventory‑Management (React, Vite, Express). UI, Kontext, und REST API.</p>
-                        <p><a className="link" href="Lager/index.html">Zur Demo</a></p>
+                        <p><a className="link" href="https://github.com/Schattennerz/Lager" target='_blank'>Zur Demo</a></p>
                     </article>
 
                     <article className="card">
                         <h3>Portfolio Web</h3>
                         <p>Dieses Portfolio als statische Seite; Vite‑basiertes Setup mit optimiertem Build.</p>
-                        <p><a className="link" href="Portfolio_web/">Repo</a></p>
+                        <p><a className="link" href="https://github.com/Schattennerz/Portfolio" target='_blank'>Zum Github</a></p>
                     </article>
 
                     <article className="card">
-                        <h3>Weitere Projekte</h3>
-                        <p>Microservices, CLI‑Tools und Automatisierungen — Tests und Deployment mit GitHub Actions.</p>
+                        <h3>Des weiteren</h3>
+                        <p>Werden weitere lerneinheiten wie zb SQL, Python und weitere tools nacheinander gelernt um flexibel zu bleiben.</p>
                         <p><span className="muted">Mehr auf Anfrage</span></p>
                     </article>
                 </div>
