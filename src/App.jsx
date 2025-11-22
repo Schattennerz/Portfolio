@@ -106,9 +106,9 @@ function App() {
             <section id="skills" className="container skills">
                 <h2>Skills</h2>
                 <ul className="skill-list">
-                    <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React, Vite</li>
-                    <li><strong>Backend:</strong> Node.js, Express, REST, GraphQL</li>
-                    <li><strong>Tooling:</strong> Git, CI/CD, Testing (Jest, Playwright)</li>
+                    <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React, Vite, Tailwind CSS</li>
+                    <li><strong>Backend:</strong> Node.js, MongoDB, MySQL(eigenständig)</li>
+                    <li><strong>Tooling:</strong> Git, Github, VS-Code </li>
                 </ul>
             </section>
 
