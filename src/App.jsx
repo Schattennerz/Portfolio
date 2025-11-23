@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import svg1 from './assets/0001.svg'
+import svg2 from './assets/0002.svg'
 import './App.css'
 
 function App() {
@@ -9,6 +11,72 @@ function App() {
         if (saved === 'light') return false
         return false
     })
+
+    const [showResume, setShowResume] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [modalSrc, setModalSrc] = useState(null)
+    const [modalZoom, setModalZoom] = useState(1)
+    const [pan, setPan] = useState({ x: 0, y: 0 })
+    const [isPanning, setIsPanning] = useState(false)
+    const panRef = useRef({ startX: 0, startY: 0, origX: 0, origY: 0 })
+
+    function openModal(src) {
+        // reset zoom & pan when opening so the full image is shown
+        setModalZoom(1)
+        setPan({ x: 0, y: 0 })
+        setModalSrc(src)
+        setModalOpen(true)
+    }
+
+    function closeModal() {
+        setModalOpen(false)
+        setModalSrc(null)
+        setModalZoom(1)
+        setPan({ x: 0, y: 0 })
+    }
+
+    useEffect(() => {
+        function onKey(e) {
+            if (e.key === 'Escape' && modalOpen) closeModal()
+        }
+        window.addEventListener('keydown', onKey)
+        return () => window.removeEventListener('keydown', onKey)
+    }, [modalOpen])
+
+    function toggleZoom(src) {
+        // if not zoomed, zoom in; if zoomed, reset
+        if (modalZoom === 1) {
+            setModalZoom(2.4)
+        } else {
+            setModalZoom(1)
+            setPan({ x: 0, y: 0 })
+        }
+    }
+
+    function onPanStart(e) {
+        if (modalZoom === 1) return
+        e.preventDefault && e.preventDefault()
+        setIsPanning(true)
+        const pageX = e.touches ? e.touches[0].pageX : e.pageX
+        const pageY = e.touches ? e.touches[0].pageY : e.pageY
+        panRef.current.startX = pageX
+        panRef.current.startY = pageY
+        panRef.current.origX = pan.x
+        panRef.current.origY = pan.y
+    }
+
+    function onPanMove(e) {
+        if (!isPanning) return
+        const pageX = e.touches ? e.touches[0].pageX : e.pageX
+        const pageY = e.touches ? e.touches[0].pageY : e.pageY
+        const dx = pageX - panRef.current.startX
+        const dy = pageY - panRef.current.startY
+        setPan({ x: panRef.current.origX + dx, y: panRef.current.origY + dy })
+    }
+
+    function onPanEnd() {
+        setIsPanning(false)
+    }
 
         useEffect(() => {
             const root = document.documentElement
@@ -91,11 +159,95 @@ function App() {
                     Auf die Zusammenarbeit an innovativen Lösungen freue ich mich und bringe meine Fähigkeiten gern in ein professionelles Umfeld ein.
                 </p>
                 <p>
-                    Da man mit dem Lernen nie fertig ist, erweitere ich kontinuierlich mein Wissen in Bereichen wie Datenbanken, Cloud‑Services, DevOps und KI-Technologien, um flexibel zu bleiben.
+                    Da man mit dem Lernen nie fertig ist, erweitere ich kontinuierlich mein Wissen in Bereichen wie Datenbanken, Cloud‑Services, DevOps und KI‑Technologien, um flexibel zu bleiben.
+                </p>
+                <p>
+                    Ein Raspberry‑Pi diente dabei als praktische Lernplattform zur Vertiefung von Server‑Technologien, Deployment‑Workflows und kleinerer Cloud‑Setups.
                 </p>
 
             </section>
-
+            <section>
+                <div className="container">
+                    <div className="button-group">
+                        <a className="btn primary demo-scale" href="https://github.com/Schattennerz" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            🐙 GitHub
+                        </a>
+                        <a
+                            className="btn demo-gradient"
+                            href="#"
+                            onClick={(e) => { e.preventDefault(); setShowResume((s) => !s) }}
+                            aria-expanded={showResume}
+                            aria-label="Lebenslauf anzeigen"
+                        >
+                            📄 Lebenslauf
+                        </a>
+                        <a className="btn ghost demo-pulse" href="https://www.linkedin.com/in/tobias-dalisda-b0abb5322" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            🔗 LinkedIn
+                        </a>
+                        <a className="btn demo-rotate" href="#projects" aria-label="Projekte">
+                            <span className="icon">🔁</span>
+                            Projekte
+                        </a>
+                        <a className="btn ghost demo-ripple" href="#contact" aria-label="Kontakt">
+                            ✉️ Kontakt
+                        </a>
+                    </div>
+                    {showResume && (
+                        <div className="resume-panel" role="region" aria-label="Lebenslauf Vorschau">
+                            <div className="resume-images">
+                                <img
+                                    src={svg1}
+                                    alt="Lebenslauf Seite 1"
+                                    className="resume-img first"
+                                    tabIndex={0}
+                                    role="button"
+                                    onClick={() => openModal(svg1)}
+                                    onKeyDown={(e) => { if (e.key === 'Enter') openModal(svg1) }}
+                                />
+                                <img
+                                    src={svg2}
+                                    alt="Lebenslauf Seite 2"
+                                    className="resume-img second"
+                                    tabIndex={0}
+                                    role="button"
+                                    onClick={() => openModal(svg2)}
+                                    onKeyDown={(e) => { if (e.key === 'Enter') openModal(svg2) }}
+                                />
+                            </div>
+                        </div>
+                    )}
+                    {modalOpen && (
+                        <div className="modal-overlay" onClick={closeModal} role="dialog" aria-modal="true">
+                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                                <button className="modal-close" aria-label="Schließen" onClick={closeModal}>✕</button>
+                                    <div
+                                        className={`modal-img-wrapper ${modalZoom > 1 ? 'zoomed' : ''} ${isPanning ? 'grabbing' : ''}`}
+                                        onMouseDown={onPanStart}
+                                        onMouseMove={onPanMove}
+                                        onMouseUp={onPanEnd}
+                                        onMouseLeave={onPanEnd}
+                                        onTouchStart={onPanStart}
+                                        onTouchMove={onPanMove}
+                                        onTouchEnd={onPanEnd}
+                                        onDoubleClick={() => toggleZoom(modalSrc)}
+                                        onKeyDown={(e) => { if (e.key === 'Enter') toggleZoom(modalSrc) }}
+                                        tabIndex={0}
+                                        aria-label="Vollbild Lebenslauf, doppelklick zum zoomen"
+                                    >
+                                        <img
+                                            src={modalSrc}
+                                            alt="Lebenslauf (gross)"
+                                            className="modal-img"
+                                            style={{ transform: `translate(${pan.x}px, ${pan.y}px) scale(${modalZoom})` }}
+                                            draggable={false}
+                                        />
+                                    </div>
+                                    <div className="modal-hint">Doppelklick zum Zoomen · Ziehen zum Verschieben · Escape zum Schließen</div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </section>
             <section id="projects" className="container projects">
                 <h2>Ausgewählte Projekte</h2>
                 <div className="grid cards">
