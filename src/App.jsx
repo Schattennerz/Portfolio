@@ -87,6 +87,12 @@ function App() {
                 <p>
                     Neue Herausforderungen und spannende Projekte reizen mich besonders, da ich so mein Können unter Beweis stellen und weiterentwickeln kann.
                 </p>
+                <p>
+                    Auf die Zusammenarbeit an innovativen Lösungen freue ich mich und bringe meine Fähigkeiten gern in ein professionelles Umfeld ein.
+                </p>
+                <p>
+                    Da man mit dem Lernen nie fertig ist, erweitere ich kontinuierlich mein Wissen in Bereichen wie Datenbanken, Cloud‑Services, DevOps und KI-Technologien, um flexibel zu bleiben.
+                </p>
 
             </section>
 
